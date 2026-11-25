@@ -1,6 +1,6 @@
-// Supabase Edge Function: 영수증 이미지 → Gemini 3.8 Flash 자동 파싱
-// 배포: supabase functions deploy parse-receipt --no-verify-jwt
-// 비밀키 등록: supabase secrets set GEMINI_API_KEY=발급받은키
+// Supabase Edge Function: 영수증 이미지 → Gemini Interactions API 자동 파싱
+// 다중 모델 자동 폴백 (gemini-3.5-flash-lite → gemini-3.8-flash → gemini-3.1-flash-lite)
+// 배포: supabase functions deploy parse-receipt --no-verify-jwt --project-ref hkvguhttmxclyaeskznk
 
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { GoogleGenAI } from "npm:@google/genai@2";
@@ -11,6 +11,12 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-family-pin",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
+
+const MODEL_PRIORITY = [
+  "gemini-3.5-flash-lite",
+  "gemini-3.8-flash",
+  "gemini-3.1-flash-lite",
+];
 
 const RECEIPT_SCHEMA = {
   type: "object",
@@ -98,7 +104,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    // 3. Gemini 3.8 Flash Interactions API 호출 (이미지 이해 + JSON 구조화 출력)
+    // 3. Gemini Interactions API 호출 (503/429 시 즉시 다음 모델로 자동 폴백)
     const ai = new GoogleGenAI({ apiKey: geminiApiKey });
     const prompt = [
       "당신은 해외 가족여행 영수증 가계부 정리 도우미입니다.",
@@ -108,30 +114,43 @@ Deno.serve(async (req) => {
       "품목 요약은 한국어로 알기 쉽게 짧게 정리하세요.",
     ].join("\n");
 
-    const interaction = await ai.interactions.create({
-      model: "gemini-3.8-flash",
-      store: false,
-      input: [
-        { type: "text", text: prompt },
-        {
-          type: "image",
-          data: imageBase64,
-          mime_type: mimeType,
-        },
-      ],
-      response_format: {
-        type: "text",
-        mime_type: "application/json",
-        schema: RECEIPT_SCHEMA,
-      },
-    });
+    let lastErr: unknown = null;
+    for (const model of MODEL_PRIORITY) {
+      try {
+        const interaction = await ai.interactions.create(
+          {
+            model,
+            store: false,
+            input: [
+              { type: "text", text: prompt },
+              {
+                type: "image",
+                data: imageBase64,
+                mime_type: mimeType,
+              },
+            ],
+            response_format: {
+              type: "text",
+              mime_type: "application/json",
+              schema: RECEIPT_SCHEMA,
+            },
+          },
+          { timeout: 14000, maxRetries: 0 }
+        );
 
-    const rawText = interaction.output_text || "{}";
-    const parsed = JSON.parse(rawText);
+        const rawText = interaction.output_text || "{}";
+        const parsed = JSON.parse(rawText);
 
-    return new Response(JSON.stringify({ ok: true, data: parsed }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+        return new Response(JSON.stringify({ ok: true, model, data: parsed }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      } catch (e) {
+        console.warn(`Model ${model} failed, trying next:`, e);
+        lastErr = e;
+      }
+    }
+
+    throw lastErr || new Error("모든 Gemini 모델 호출에 실패했습니다.");
   } catch (err) {
     console.error("parse-receipt error:", err);
     return new Response(
