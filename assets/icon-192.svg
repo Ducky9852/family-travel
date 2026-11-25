@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="44" fill="url(#g)"/>
+  <circle cx="96" cy="84" r="44" fill="rgba(255,255,255,0.16)"/>
+  <path d="M52 104 L144 64 L116 122 L98 104 L76 116 L84 96 Z" fill="#ffffff"/>
+  <text x="96" y="160" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="22" font-weight="700">가족여행</text>
+</svg>

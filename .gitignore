@@ -1,0 +1,6 @@
+# 민감 설정 / 로컬 임시 파일
+.env
+.env.local
+supabase/.temp/
+.DS_Store
+Thumbs.db
