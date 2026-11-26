@@ -174,6 +174,27 @@ export function createHongKongSeed() {
       { title: "하가우(딤섬)", author: "N509FZ", license: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Har_Gow_at_Canal_Luna_restaurant,_InterContinental_Guangzhou_Exhibition_Center_(20180923125523).jpg" },
       { title: "에그타르트", author: "chinnian", license: "CC BY-SA 2.0", url: "https://commons.wikimedia.org/wiki/File:Hong_Kong_Sweet_Dynasty_egg_tarts.jpg" },
       { title: "홍콩식 밀크티", author: "WiNG", license: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Hong_Kong-style_Milk_Tea.jpg" },
+      { title: "시우마이(딤섬)", author: "Luksongm MWLLOPPEE", license: "CC0", url: "https://commons.wikimedia.org/wiki/File:HK_SW_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E6%98%9F%E6%9C%88%E6%A8%93_Sky_Cuisine_Restaurant_Friday_morning_%E6%97%A9%E9%A4%90_breakfast_steamed_%E7%87%92%E8%B3%A3_siu_mai_%E9%BB%9E%E5%BF%83_dim_sum_March_2026_N13P_01.jpg" },
+      { title: "로마이까이(찹쌀닭)", author: "brown_colour", license: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Lo_mai_gai_in_KL.jpg" },
+      { title: "빅토리아 피크 낮 파노라마", author: "Dllu", license: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Panorama_of_Hong_Kong_Harbour_from_The_Peak_dllu.jpg" },
+      { title: "피크타워 외관", author: "Ralf Roletschek", license: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:13-08-09-peak-by-RalfR-01.jpg" },
+      { title: "버바검프 피크타워", author: "WiNG", license: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:BubbaGumpRestaurantHK.JPG" },
+      { title: "새우·해산물 요리", author: "Neeta Lind", license: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Brigtsen%27s_seafood_platter_(aka_the_%22Shell_Beach_Diet%22).jpg" },
+      { title: "광둥식 죽", author: "ZhengZhou", license: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Cantonese_Sampan_Congee_(Boat_Congee).jpeg" },
+      { title: "광둥식 죽과 꽈배기", author: "Connie Ma", license: "CC BY-SA 2.0", url: "https://commons.wikimedia.org/wiki/File:Congee_with_Youtiao.jpg" },
+      { title: "란퐁유엔 매장", author: "Safoule 2558 LausldM", license: "CC0", url: "https://commons.wikimedia.org/wiki/File:HK_%E4%B8%AD%E7%92%B0_Central_%E6%93%BA%E8%8A%B1%E8%A1%97_Lyndhurst_Terrace_%E7%B5%90%E5%BF%97%E8%A1%97_Gage_Street_shop_%E8%98%AD%E8%8A%B3%E5%9C%92_Lan_Fong_Yuen_February_2025_R12S_04.jpg" },
+      { title: "돼지고기 번(쭈빠빠오)", author: "Andy Li", license: "CC0", url: "https://commons.wikimedia.org/wiki/File:Pork_Chop_Bun_and_Hong_Kong_style_Milk_Tea_(hot)_-_CK_Bistro_2025-09-16.jpg" },
+      { title: "포린사원", author: "Mk2010", license: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Po_Lin_Monastery,_Hanging-banner_(Hong_Kong).JPG" },
+      { title: "스타페리", author: "Clark Sui", license: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Victoria_Harbour_Hong_Kong_and_Star_Ferry.JPG" },
+      { title: "센트럴 스타페리 부두", author: "Ceeseven", license: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Far_view_of_Central_Star_Ferry_Pier_and_Hong_Kong_Observation_Wheel.JPG" },
+      { title: "침사추이 시계탑", author: "Mk2010", license: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Former_Kowloon-Canton_Railway_Clock_Tower,_Tsim_Sha_Tsui_(Hong_Kong).jpg" },
+      { title: "애비뉴 오브 스타", author: "CEphoto, Uwe Aranas", license: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Hong_Kong_China_Avenue-of-stars-02.jpg" },
+      { title: "아쿠아루나 야경 크루즈", author: "Kārlis Dambrāns", license: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Hong_Kong_(26379549654).jpg" },
+      { title: "침사추이 해변 야경", author: "JaWings 2001", license: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:HK_%E5%B0%96%E6%B2%99%E5%92%80_TST_Waterfront_Promenade_near_K11_MUSEA_night_July_2021_SS2_06.jpg" },
+      { title: "린헝라우", author: "Xuthoria", license: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Hong_Kong_2026_-_Lin_Heung_Lau_02.jpg" },
+      { title: "홍콩 전통 딤섬 아침", author: "Lorenzarius", license: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Dimsum_breakfast_in_Hong_Kong.jpg" },
+      { title: "차슈바오(찐빵)", author: "Takeaway", license: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Char_siu_bao.jpg" },
+      { title: "소고기 양지 국수", author: "Dennis Wong", license: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Beef_brisket_rice_noodle_%E7%89%9B%E8%85%A9%E7%B2%89_(3356674856).jpg" },
     ],
   };
 
@@ -205,7 +226,7 @@ export function createHongKongSeed() {
       alternatives: [
         { title: "점심: 린헝라우 카트 딤섬 (센트럴)", local_name: "蓮香樓 Lin Heung Lau", address: "160 Wellington St, Central, Hong Kong", map_query: "Lin Heung Lau 160 Wellington St Hong Kong", details: "대안: 옛날식 카트 딤섬 (1인 약 HK$120)" },
       ],
-      photos: ["assets/hongkong/dim_sum_hagao.jpg"], vouchers: [], completed: false, skipped: false,
+      photos: ["assets/hongkong/dim_sum_hagao.jpg", "assets/hongkong/siumai.jpg", "assets/hongkong/lo_mai_gai.jpg"], vouchers: [], completed: false, skipped: false,
     },
     {
       id: "it-104", trip_id: HONGKONG_TRIP_ID, day_date: "2027-02-12", day_label: "2/12 (금)",
@@ -232,7 +253,7 @@ export function createHongKongSeed() {
       map_query: "Peak Tram Lower Terminus Hong Kong",
       details: "일몰(약 18:20) 전에 올라가서 낮·야경 둘 다 보기. 주말보다 평일 요금이 저렴(성인 왕복 HK$88)",
       transport: "택시 또는 15C 버스 → 피크트램", reservation_status: "불필요", alternatives: [],
-      photos: ["assets/hongkong/peak_tram.jpg", "assets/hongkong/victoria_peak.jpg"],
+      photos: ["assets/hongkong/peak_tram.jpg", "assets/hongkong/peak_tower.jpg", "assets/hongkong/victoria_peak.jpg"],
       vouchers: [], completed: false, skipped: false,
     },
     {
@@ -241,7 +262,9 @@ export function createHongKongSeed() {
       local_name: "阿甘蝦餐廳 Bubba Gump Shrimp Co.", address: "The Peak Tower, 128 Peak Rd, The Peak, Hong Kong",
       map_query: "Bubba Gump Shrimp Co The Peak Tower Hong Kong",
       details: "새우 요리, 아이들 메뉴. 창가석 미리 예약 권장 (1인 약 HK$300)",
-      transport: "피크트램 하행 → 택시로 호텔", reservation_status: "권장", alternatives: [], photos: [], vouchers: [], completed: false, skipped: false,
+      transport: "피크트램 하행 → 택시로 호텔", reservation_status: "권장", alternatives: [],
+      photos: ["assets/hongkong/bubba_gump_hk.jpg", "assets/hongkong/peak_tower_ext.jpg", "assets/hongkong/shrimp_dish.jpg"],
+      vouchers: [], completed: false, skipped: false,
     },
 
     // Day 2: 2/13 (토)
@@ -251,7 +274,9 @@ export function createHongKongSeed() {
       local_name: "生記粥品專家 Sang Kee Congee Shop", address: "7-9 Burd St, Sheung Wan, Hong Kong",
       map_query: "Sang Kee Congee Shop Burd St Hong Kong",
       details: "광둥식 죽(피단·소고기), 꽈배기로 가볍게. 아침 일찍 오픈 (1인 약 HK$60)",
-      transport: "도보", reservation_status: "불필요", alternatives: [], photos: [], vouchers: [], completed: false, skipped: false,
+      transport: "도보", reservation_status: "불필요", alternatives: [],
+      photos: ["assets/hongkong/cantonese_congee.jpg", "assets/hongkong/youtiao.jpg"],
+      vouchers: [], completed: false, skipped: false,
     },
     {
       id: "it-202", trip_id: HONGKONG_TRIP_ID, day_date: "2027-02-13", day_label: "2/13 (토)",
@@ -302,7 +327,8 @@ export function createHongKongSeed() {
       map_query: "Lan Fong Yuen 2 Gage St Central Hong Kong",
       details: "원조 홍콩식 밀크티 + 돼지고기 번(쭈빠빠오). 좁고 합석 많음 (1인 약 HK$70)",
       transport: "도보·택시", reservation_status: "불필요", alternatives: [],
-      photos: ["assets/hongkong/milk_tea.jpg"], vouchers: [], completed: false, skipped: false,
+      photos: ["assets/hongkong/lan_fong_yuen.jpg", "assets/hongkong/milk_tea.jpg", "assets/hongkong/pork_chop_bun.jpg"],
+      vouchers: [], completed: false, skipped: false,
     },
     {
       id: "it-302", trip_id: HONGKONG_TRIP_ID, day_date: "2027-02-14", day_label: "2/14 (일)",
@@ -319,7 +345,7 @@ export function createHongKongSeed() {
       map_query: "Ngong Ping 360 Tung Chung Cable Car Terminal",
       details: "크리스털 캐빈(바닥 유리) 왕복. 일요일 오전이라 일찍 갈수록 대기 짧음. 268계단 올라가 빅 부다",
       transport: "케이블카", reservation_status: "필수", alternatives: [],
-      photos: ["assets/hongkong/ngong_ping_360.jpg", "assets/hongkong/big_buddha.jpg"],
+      photos: ["assets/hongkong/ngong_ping_360.jpg", "assets/hongkong/big_buddha.jpg", "assets/hongkong/po_lin_monastery.jpg"],
       vouchers: [], completed: false, skipped: false,
     },
     {
@@ -336,7 +362,9 @@ export function createHongKongSeed() {
       local_name: "天星小輪 Star Ferry Central Pier", address: "Central Pier 7 → Tsim Sha Tsui Star Ferry Pier",
       map_query: "Central Star Ferry Pier Hong Kong",
       details: "센트럴 부두에서 스타페리로 침사추이까지 약 10분 (옥토퍼스·카드 터치)",
-      transport: "MTR + 스타페리", reservation_status: "불필요", alternatives: [], photos: [], vouchers: [], completed: false, skipped: false,
+      transport: "MTR + 스타페리", reservation_status: "불필요", alternatives: [],
+      photos: ["assets/hongkong/star_ferry.jpg", "assets/hongkong/star_ferry_pier.jpg"],
+      vouchers: [], completed: false, skipped: false,
     },
     {
       id: "it-306", trip_id: HONGKONG_TRIP_ID, day_date: "2027-02-14", day_label: "2/14 (일)",
@@ -345,7 +373,8 @@ export function createHongKongSeed() {
       map_query: "1881 Heritage Tsim Sha Tsui Hong Kong",
       details: "쇼핑·간식 시간",
       transport: "도보", reservation_status: "불필요", alternatives: [],
-      photos: ["assets/hongkong/heritage_1881.jpg"], vouchers: [], completed: false, skipped: false,
+      photos: ["assets/hongkong/heritage_1881.jpg", "assets/hongkong/tst_clock_tower.jpg", "assets/hongkong/avenue_of_stars.jpg"],
+      vouchers: [], completed: false, skipped: false,
     },
     {
       id: "it-307", trip_id: HONGKONG_TRIP_ID, day_date: "2027-02-14", day_label: "2/14 (일)",
@@ -366,7 +395,8 @@ export function createHongKongSeed() {
       map_query: "Avenue of Stars Tsim Sha Tsui Hong Kong",
       details: "심포니 오브 라이트는 2026.11.18 종료. 대신 침사추이 해변 산책로·애비뉴 오브 스타 야경 감상 또는 아쿠아루나 크루즈. 여행 시기 관광청 시즌 라이트쇼·드론쇼 있으면 교체",
       transport: "침사추이역 → 센트럴 환승 → 셩완 (MTR)", reservation_status: "불필요", alternatives: [],
-      photos: ["assets/hongkong/victoria_harbour.jpg"], vouchers: [], completed: false, skipped: false,
+      photos: ["assets/hongkong/victoria_harbour.jpg", "assets/hongkong/aqua_luna.jpg", "assets/hongkong/tst_night_promenade.jpg"],
+      vouchers: [], completed: false, skipped: false,
     },
 
     // Day 4: 2/15 (월)
@@ -376,7 +406,9 @@ export function createHongKongSeed() {
       local_name: "蓮香樓 Lin Heung Lau", address: "160 Wellington St, Central, Hong Kong",
       map_query: "Lin Heung Lau 160 Wellington St Central Hong Kong",
       details: "옛날식 카트 딤섬(찐빵, 시우마이) 경험. 아침 오픈 시간 출발 전 확인 (1인 약 HK$120)",
-      transport: "택시 또는 도보", reservation_status: "권장", alternatives: [], photos: [], vouchers: [], completed: false, skipped: false,
+      transport: "택시 또는 도보", reservation_status: "권장", alternatives: [],
+      photos: ["assets/hongkong/lin_heung_lau.jpg", "assets/hongkong/char_siu_bao.jpg", "assets/hongkong/char_siu_bun.jpg"],
+      vouchers: [], completed: false, skipped: false,
     },
     {
       id: "it-402", trip_id: HONGKONG_TRIP_ID, day_date: "2027-02-15", day_label: "2/15 (월)",
@@ -412,14 +444,15 @@ export function createHongKongSeed() {
     },
   ];
 
-  // 식당추천 시트 + 언급된 후보 식당/관광지
+  // 식당추천 시트 + 언급된 후보 식당/관광지 (photo는 '|' 구분자로 여러 장 지원)
   const candidates = [
     {
       id: "cand-1", trip_id: HONGKONG_TRIP_ID, category: "식당",
       name: "딤섬스퀘어", local_name: "點心廣場 Dim Sum Square", area: "셩완",
       address: "78 Jervois St, Sheung Wan, Hong Kong", map_query: "Dim Sum Square 78 Jervois St Hong Kong",
       recommended_menu: "하가우, 시우마이, 찹쌀 닭(로마이까이)", est_price_local: 100, reservation: "불필요",
-      memo: "호텔 도보권. 웨이팅 있음. 대안: 린헝라우(센트럴)", photo: "assets/hongkong/dim_sum_hagao.jpg",
+      memo: "호텔 도보권. 웨이팅 있음. 대안: 린헝라우(센트럴)",
+      photo: "assets/hongkong/dim_sum_hagao.jpg|assets/hongkong/siumai.jpg|assets/hongkong/lo_mai_gai.jpg",
       planned_day_date: "2027-02-12", meal_type: "점심", is_added: true,
     },
     {
@@ -427,7 +460,8 @@ export function createHongKongSeed() {
       name: "타이청 베이커리", local_name: "泰昌餅家 Tai Cheong Bakery", area: "센트럴/소호",
       address: "35 Lyndhurst Terrace, Central, Hong Kong", map_query: "Tai Cheong Bakery Lyndhurst Terrace Hong Kong",
       recommended_menu: "에그타르트", est_price_local: 15, reservation: "불필요",
-      memo: "소호 산책 중 간식. 근처 카우키(소고기 국수)도 유명", photo: "assets/hongkong/egg_tart.jpg",
+      memo: "소호 산책 중 간식. 근처 카우키(소고기 국수)도 유명",
+      photo: "assets/hongkong/egg_tart.jpg|assets/hongkong/soho_escalator.jpg",
       planned_day_date: "2027-02-12", meal_type: "간식", is_added: true,
     },
     {
@@ -435,7 +469,8 @@ export function createHongKongSeed() {
       name: "카우키 (대안·후보)", local_name: "九記牛腩 Kau Kee Restaurant", area: "센트럴/소호",
       address: "21 Gough St, Central, Hong Kong", map_query: "Kau Kee Restaurant 21 Gough St Hong Kong",
       recommended_menu: "소고기 양지 국수, 카레 국수", est_price_local: 80, reservation: "불필요",
-      memo: "타이청 베이커리 인근 맛집 — 영업일/휴무일 및 현금 결제 확인 필요", photo: "",
+      memo: "타이청 베이커리 인근 맛집 — 영업일/휴무일 및 현금 결제 확인 필요",
+      photo: "assets/hongkong/kau_kee_noodle.jpg",
       planned_day_date: "2027-02-12", meal_type: "후보", is_added: false,
     },
     {
@@ -443,7 +478,8 @@ export function createHongKongSeed() {
       name: "버바검프", local_name: "Bubba Gump Shrimp Co.", area: "빅토리아 피크",
       address: "The Peak Tower, 128 Peak Rd, Hong Kong", map_query: "Bubba Gump Shrimp Co The Peak Tower Hong Kong",
       recommended_menu: "새우 요리, 아이들 메뉴", est_price_local: 300, reservation: "권장",
-      memo: "창가석은 예약 필수", photo: "assets/hongkong/victoria_peak.jpg",
+      memo: "창가석은 예약 필수",
+      photo: "assets/hongkong/bubba_gump_hk.jpg|assets/hongkong/shrimp_dish.jpg|assets/hongkong/victoria_peak.jpg",
       planned_day_date: "2027-02-12", meal_type: "저녁", is_added: true,
     },
     {
@@ -451,7 +487,8 @@ export function createHongKongSeed() {
       name: "생기죽", local_name: "生記粥品專家 Sang Kee Congee", area: "셩완",
       address: "7-9 Burd St, Sheung Wan, Hong Kong", map_query: "Sang Kee Congee Shop Burd St Hong Kong",
       recommended_menu: "광둥식 죽(피단·소고기), 꽈배기", est_price_local: 60, reservation: "불필요",
-      memo: "아침 일찍 오픈", photo: "",
+      memo: "아침 일찍 오픈",
+      photo: "assets/hongkong/cantonese_congee.jpg|assets/hongkong/youtiao.jpg",
       planned_day_date: "2027-02-13", meal_type: "아침", is_added: true,
     },
     {
@@ -467,7 +504,8 @@ export function createHongKongSeed() {
       name: "란퐁유엔", local_name: "蘭芳園 Lan Fong Yuen", area: "센트럴",
       address: "2 Gage St, Central, Hong Kong", map_query: "Lan Fong Yuen 2 Gage St Central Hong Kong",
       recommended_menu: "홍콩식 밀크티, 돼지고기 번(쭈빠빠오)", est_price_local: 70, reservation: "불필요",
-      memo: "좁고 합석 많음", photo: "assets/hongkong/milk_tea.jpg",
+      memo: "좁고 합석 많음",
+      photo: "assets/hongkong/lan_fong_yuen.jpg|assets/hongkong/milk_tea.jpg|assets/hongkong/pork_chop_bun.jpg",
       planned_day_date: "2027-02-14", meal_type: "아침", is_added: true,
     },
     {
@@ -483,7 +521,8 @@ export function createHongKongSeed() {
       name: "린헝라우", local_name: "蓮香樓 Lin Heung Lau", area: "센트럴",
       address: "160 Wellington St, Central, Hong Kong", map_query: "Lin Heung Lau 160 Wellington St Hong Kong",
       recommended_menu: "카트 딤섬(찐빵, 시우마이)", est_price_local: 120, reservation: "권장",
-      memo: "아침 오픈 시간 확인", photo: "",
+      memo: "아침 오픈 시간 확인",
+      photo: "assets/hongkong/lin_heung_lau.jpg|assets/hongkong/char_siu_bao.jpg|assets/hongkong/char_siu_bun.jpg",
       planned_day_date: "2027-02-15", meal_type: "아침", is_added: true,
     },
     {
@@ -491,7 +530,8 @@ export function createHongKongSeed() {
       name: "아쿠아루나 하버 크루즈 (후보)", local_name: "張保仔 Aqua Luna", area: "침사추이/센트럴",
       address: "Tsim Sha Tsui Public Pier 1, Hong Kong", map_query: "Aqua Luna Tsim Sha Tsui Pier Hong Kong",
       recommended_menu: "빅토리아 하버 야경 크루즈 (약 45분)", est_price_local: 280, reservation: "권장",
-      memo: "심포니 오브 라이트 종료 대안 후보. 시간·가격 사전 확인", photo: "assets/hongkong/victoria_harbour.jpg",
+      memo: "심포니 오브 라이트 종료 대안 후보. 시간·가격 사전 확인",
+      photo: "assets/hongkong/aqua_luna.jpg|assets/hongkong/victoria_harbour.jpg|assets/hongkong/tst_night_promenade.jpg",
       planned_day_date: "2027-02-14", meal_type: "야경 후보", is_added: false,
     },
   ];

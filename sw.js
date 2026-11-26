@@ -1,5 +1,5 @@
-// 오프라인 지원 Service Worker (비행기/지하철에서도 일정·체크리스트 열람 가능)
-const CACHE_NAME = "family-travel-pwa-v1";
+// 오프라인 지원 Service Worker (비행기/지하철에서도 일정·체크리스트·사진 열람 가능)
+const CACHE_NAME = "family-travel-pwa-v2";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -13,17 +13,38 @@ const CORE_ASSETS = [
   "./js/export-excel.js",
   "./js/app.js",
   "./assets/icon-192.svg",
-  "./assets/hongkong/soho_escalator.jpg",
-  "./assets/hongkong/pmq.jpg",
-  "./assets/hongkong/peak_tram.jpg",
-  "./assets/hongkong/victoria_peak.jpg",
-  "./assets/hongkong/ngong_ping_360.jpg",
+  "./assets/hongkong/aqua_luna.jpg",
+  "./assets/hongkong/avenue_of_stars.jpg",
   "./assets/hongkong/big_buddha.jpg",
-  "./assets/hongkong/heritage_1881.jpg",
-  "./assets/hongkong/victoria_harbour.jpg",
+  "./assets/hongkong/bubba_gump_hk.jpg",
+  "./assets/hongkong/cantonese_congee.jpg",
+  "./assets/hongkong/char_siu_bao.jpg",
+  "./assets/hongkong/char_siu_bun.jpg",
   "./assets/hongkong/dim_sum_hagao.jpg",
   "./assets/hongkong/egg_tart.jpg",
+  "./assets/hongkong/heritage_1881.jpg",
+  "./assets/hongkong/kau_kee_noodle.jpg",
+  "./assets/hongkong/lan_fong_yuen.jpg",
+  "./assets/hongkong/lin_heung_lau.jpg",
+  "./assets/hongkong/lo_mai_gai.jpg",
   "./assets/hongkong/milk_tea.jpg",
+  "./assets/hongkong/ngong_ping_360.jpg",
+  "./assets/hongkong/peak_tower.jpg",
+  "./assets/hongkong/peak_tower_ext.jpg",
+  "./assets/hongkong/peak_tram.jpg",
+  "./assets/hongkong/pmq.jpg",
+  "./assets/hongkong/po_lin_monastery.jpg",
+  "./assets/hongkong/pork_chop_bun.jpg",
+  "./assets/hongkong/shrimp_dish.jpg",
+  "./assets/hongkong/siumai.jpg",
+  "./assets/hongkong/soho_escalator.jpg",
+  "./assets/hongkong/star_ferry.jpg",
+  "./assets/hongkong/star_ferry_pier.jpg",
+  "./assets/hongkong/tst_clock_tower.jpg",
+  "./assets/hongkong/tst_night_promenade.jpg",
+  "./assets/hongkong/victoria_harbour.jpg",
+  "./assets/hongkong/victoria_peak.jpg",
+  "./assets/hongkong/youtiao.jpg",
 ];
 
 self.addEventListener("install", (event) => {
@@ -44,8 +65,6 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
   const url = new URL(request.url);
-
-  // Supabase API / 지오코딩 / 외부 API는 네트워크 우선
   if (url.origin !== self.location.origin) return;
 
   event.respondWith(

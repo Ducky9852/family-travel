@@ -535,8 +535,8 @@ function renderItineraryTab() {
 
                 ${
                   photos.length
-                    ? `<div class="it-photos">${photos
-                        .map((src) => `<img src="${esc(src)}" alt="${esc(item.title)}" loading="lazy" data-zoom-img="${esc(src)}" />`)
+                    ? `<div class="it-photos" data-gallery-group="${esc(item.title)}">${photos
+                        .map((src, pIdx) => `<img src="${esc(src)}" alt="${esc(item.title)}" loading="lazy" data-zoom-img="${esc(src)}" data-zoom-idx="${pIdx}" />`)
                         .join("")}</div>`
                     : ""
                 }
@@ -666,7 +666,12 @@ function renderItineraryTab() {
   });
 
   mainContent.querySelectorAll("[data-zoom-img]").forEach((img) => {
-    img.addEventListener("click", () => openImageZoomModal(img.dataset.zoomImg, img.alt));
+    img.addEventListener("click", () => {
+      const parent = img.closest(".it-photos");
+      const groupImgs = parent ? Array.from(parent.querySelectorAll("img")).map((el) => el.dataset.zoomImg) : [img.dataset.zoomImg];
+      const startIdx = Number(img.dataset.zoomIdx) || 0;
+      openImageZoomModal(groupImgs, img.alt, startIdx);
+    });
   });
 }
 
@@ -690,13 +695,38 @@ function openTaxiCardModal(title, localName, address) {
   });
 }
 
-function openImageZoomModal(src, title = "사진 보기") {
+function openImageZoomModal(srcOrList, title = "사진 보기", startIndex = 0) {
+  const list = Array.isArray(srcOrList) ? srcOrList.filter(Boolean) : [srcOrList].filter(Boolean);
+  let idx = Math.max(0, Math.min(startIndex, list.length - 1));
+
   openDialog({
     title: title || "사진 보기",
-    bodyHtml: `<img src="${esc(src)}" alt="${esc(title)}" style="width:100%;border-radius:12px;display:block;" />`,
+    bodyHtml: `
+      <img id="zoom-img-el" src="${esc(list[idx])}" alt="${esc(title)}" style="width:100%;max-height:65dvh;object-fit:contain;border-radius:12px;display:block;background:#0f172a;" />
+      ${
+        list.length > 1
+          ? `<div class="gallery-nav">
+               <button type="button" class="btn btn-soft btn-sm" id="zoom-prev">‹ 이전</button>
+               <span class="gallery-counter" id="zoom-counter">${idx + 1} / ${list.length}</span>
+               <button type="button" class="btn btn-soft btn-sm" id="zoom-next">다음 ›</button>
+             </div>`
+          : ""
+      }
+    `,
     footerHtml: `<button type="button" class="btn btn-primary btn-sm" id="img-close">닫기</button>`,
-    onMount(_, footer) {
+    onMount(body, footer) {
       footer.querySelector("#img-close").addEventListener("click", closeDialog);
+      if (list.length > 1) {
+        const imgEl = body.querySelector("#zoom-img-el");
+        const cntEl = body.querySelector("#zoom-counter");
+        const update = (next) => {
+          idx = (next + list.length) % list.length;
+          imgEl.src = list[idx];
+          cntEl.textContent = `${idx + 1} / ${list.length}`;
+        };
+        body.querySelector("#zoom-prev").addEventListener("click", () => update(idx - 1));
+        body.querySelector("#zoom-next").addEventListener("click", () => update(idx + 1));
+      }
     },
   });
 }
@@ -981,7 +1011,15 @@ async function renderMapTab() {
             </div>
             ${c.recommended_menu ? `<div style="font-size:13px;margin-top:6px;">🍽️ <b>추천:</b> ${esc(c.recommended_menu)}</div>` : ""}
             ${c.memo ? `<div style="font-size:12px;color:var(--text-muted);margin-top:4px;">${esc(c.memo)}</div>` : ""}
-            ${c.photo ? `<div class="it-photos"><img src="${esc(c.photo)}" alt="${esc(c.name)}" loading="lazy" data-zoom-img="${esc(c.photo)}" /></div>` : ""}
+            ${
+              c.photo
+                ? `<div class="it-photos">${String(c.photo)
+                    .split("|")
+                    .filter(Boolean)
+                    .map((src, pIdx) => `<img src="${esc(src)}" alt="${esc(c.name)}" loading="lazy" data-zoom-img="${esc(src)}" data-zoom-idx="${pIdx}" />`)
+                    .join("")}</div>`
+                : ""
+            }
             <div class="it-actions">
               <a class="btn btn-accent btn-sm" href="${getGoogleMapsSearchUrl(query)}" target="_blank" rel="noopener">📍 구글맵</a>
               <a class="btn btn-soft btn-sm" href="${getGoogleMapsDirectionsUrl(query)}" target="_blank" rel="noopener">🧭 길찾기</a>
@@ -1051,7 +1089,12 @@ async function renderMapTab() {
     });
   });
   mainContent.querySelectorAll("[data-zoom-img]").forEach((img) => {
-    img.addEventListener("click", () => openImageZoomModal(img.dataset.zoomImg, img.alt));
+    img.addEventListener("click", () => {
+      const parent = img.closest(".it-photos");
+      const groupImgs = parent ? Array.from(parent.querySelectorAll("img")).map((el) => el.dataset.zoomImg) : [img.dataset.zoomImg];
+      const startIdx = Number(img.dataset.zoomIdx) || 0;
+      openImageZoomModal(groupImgs, img.alt, startIdx);
+    });
   });
 
   // 지도 렌더링
@@ -1143,7 +1186,7 @@ function openAddCandidateToItineraryModal(cand) {
           transport: "",
           reservation_status: cand.reservation || "불필요",
           alternatives: [],
-          photos: cand.photo ? [cand.photo] : [],
+          photos: cand.photo ? String(cand.photo).split("|").filter(Boolean) : [],
           vouchers: [],
           completed: false,
           skipped: false,
