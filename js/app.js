@@ -34,6 +34,7 @@ const state = {
   prepSubTab: "checklist", // 'checklist' | 'transport' | 'budget_table'
   mapEngine: "leaflet", // 'leaflet' | 'google'
   mapFilter: "all", // 'all' | 'candidates' | 'YYYY-MM-DD'
+  candFilter: "all", // 'all' | 'pending' | 'central' | 'kowloon' | 'peak' | 'lantau'
   userLocation: null,
   selectedMapPin: null,
   pendingVoucherItemId: null,
@@ -982,8 +983,33 @@ async function renderMapTab() {
       <button type="button" class="btn btn-primary btn-sm" id="btn-add-cand">+ 후보 추가</button>
     </div>
 
+    <div class="day-tabs" style="padding-bottom:8px;">
+      ${[
+        ["all", `전체 (${allCandidates.length})`],
+        ["pending", "✨ 대기 후보만"],
+        ["central", "셩완·센트럴"],
+        ["kowloon", "침사추이·조던"],
+        ["peak", "피크·완차이"],
+        ["lantau", "디즈니·옹핑"],
+      ]
+        .map(
+          ([k, label]) =>
+            `<button type="button" class="day-chip ${state.candFilter === k ? "active" : ""}" data-cfilter="${k}">${label}</button>`
+        )
+        .join("")}
+    </div>
+
     <div id="candidate-list">
       ${allCandidates
+        .filter((c) => {
+          const area = `${c.area || ""} ${c.address || ""}`;
+          if (state.candFilter === "pending") return !c.is_added;
+          if (state.candFilter === "central") return /셩완|센트럴|소호|Central|Sheung Wan/i.test(area);
+          if (state.candFilter === "kowloon") return /침사추이|조던|Jordan|Tsim Sha Tsui/i.test(area);
+          if (state.candFilter === "peak") return /피크|완차이|Peak|Wan Chai/i.test(area);
+          if (state.candFilter === "lantau") return /디즈니|옹핑|란터우|Disney|Lantau/i.test(area);
+          return true;
+        })
         .map((c) => {
           const query = c.map_query || c.address || `${c.name} ${trip.destination}`;
           const sym = getCurrencySymbol(trip.currency);
@@ -1010,7 +1036,7 @@ async function renderMapTab() {
               }
             </div>
             ${c.recommended_menu ? `<div style="font-size:13px;margin-top:6px;">🍽️ <b>추천:</b> ${esc(c.recommended_menu)}</div>` : ""}
-            ${c.memo ? `<div style="font-size:12px;color:var(--text-muted);margin-top:4px;">${esc(c.memo)}</div>` : ""}
+            ${c.memo ? `<div style="font-size:12px;color:#334155;margin-top:6px;white-space:pre-line;line-height:1.5;background:var(--surface-soft);padding:8px 10px;border-radius:10px;">${esc(c.memo)}</div>` : ""}
             ${
               c.photo
                 ? `<div class="it-photos">${String(c.photo)
@@ -1065,6 +1091,13 @@ async function renderMapTab() {
   mainContent.querySelectorAll("[data-mfilter]").forEach((btn) => {
     btn.addEventListener("click", () => {
       state.mapFilter = btn.dataset.mfilter;
+      renderMapTab();
+    });
+  });
+
+  mainContent.querySelectorAll("[data-cfilter]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.candFilter = btn.dataset.cfilter;
       renderMapTab();
     });
   });
