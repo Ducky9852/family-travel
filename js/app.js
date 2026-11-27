@@ -20,7 +20,7 @@ import {
   calcDistanceKm,
 } from "./maps.js";
 import { compressImageFile, analyzeReceiptWithAI, guessWalletId } from "./receipt.js";
-import { exportTripToExcel } from "./export-excel.js";
+import { exportTripToExcel, exportGoogleMyMapsCsv } from "./export-excel.js";
 
 // ============================================================
 // 상태 관리
@@ -980,7 +980,10 @@ async function renderMapTab() {
 
     <div class="section-header">
       <h2 class="section-title">★ 후보 식당 · 여행지 (${allCandidates.length})</h2>
-      <button type="button" class="btn btn-primary btn-sm" id="btn-add-cand">+ 후보 추가</button>
+      <div style="display:flex;gap:6px;">
+        <button type="button" class="btn btn-soft btn-sm" id="btn-export-mymaps" title="Google My Maps 일괄 가져오기용 CSV">📥 구글맵 CSV</button>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-add-cand">+ 후보 추가</button>
+      </div>
     </div>
 
     <div class="day-tabs" style="padding-bottom:8px;">
@@ -988,7 +991,7 @@ async function renderMapTab() {
         ["all", `전체 (${allCandidates.length})`],
         ["pending", "✨ 대기 후보만"],
         ["central", "셩완·센트럴"],
-        ["kowloon", "침사추이·조던"],
+        ["kowloon", "침사추이·조던·몽콕"],
         ["peak", "피크·완차이"],
         ["lantau", "디즈니·옹핑"],
       ]
@@ -1005,7 +1008,7 @@ async function renderMapTab() {
           const area = `${c.area || ""} ${c.address || ""}`;
           if (state.candFilter === "pending") return !c.is_added;
           if (state.candFilter === "central") return /셩완|센트럴|소호|Central|Sheung Wan/i.test(area);
-          if (state.candFilter === "kowloon") return /침사추이|조던|Jordan|Tsim Sha Tsui/i.test(area);
+          if (state.candFilter === "kowloon") return /침사추이|조던|몽콕|Jordan|Tsim Sha Tsui|Mong Kok/i.test(area);
           if (state.candFilter === "peak") return /피크|완차이|Peak|Wan Chai/i.test(area);
           if (state.candFilter === "lantau") return /디즈니|옹핑|란터우|Disney|Lantau/i.test(area);
           return true;
@@ -1103,6 +1106,10 @@ async function renderMapTab() {
   });
 
   $("#btn-add-cand").addEventListener("click", () => openCandidateModal(null));
+  $("#btn-export-mymaps")?.addEventListener("click", () => {
+    exportGoogleMyMapsCsv({ trip, candidates: allCandidates });
+    showToast("CSV 다운로드 완료! Google My Maps에서 '가져오기'로 한 번에 등록하세요.", 4000);
+  });
   mainContent.querySelectorAll("[data-edit-cand]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const c = allCandidates.find((x) => x.id === btn.dataset.editCand);

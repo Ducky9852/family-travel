@@ -101,3 +101,43 @@ export async function exportTripToExcel({ trip, itinerary, candidates, expenses,
   const safeName = (trip.title || "family_trip").replace(/[\\/:*?"<>|]/g, "_");
   XLSX.writeFile(wb, `${safeName}_${trip.start_date}.xlsx`);
 }
+
+/**
+ * Google My Maps (https://www.google.com/maps/d/) "가져오기(Import)"용 CSV 다운로드
+ * CSV 1개를 올리면 후보 + 주요 장소 전체가 내 구글맵 "홍콩여행" 지도에 한 번에 저장됩니다.
+ */
+export function exportGoogleMyMapsCsv({ trip, candidates }) {
+  const csvEsc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const headers = ["이름", "분류", "지역", "주소", "추천메뉴", "메모", "구글맵링크"];
+  const rows = [
+    headers.map(csvEsc).join(","),
+    ...candidates.map((c) => {
+      const q = c.map_query || c.address || `${c.name} ${trip.destination}`;
+      const gUrl = /^https?:\/\//i.test(q)
+        ? q
+        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+      const addr = c.address || `${c.local_name || c.name}, ${trip.destination}`;
+      return [
+        c.name,
+        c.category,
+        c.area || "",
+        addr,
+        c.recommended_menu || "",
+        (c.memo || "").replace(/\r?\n/g, " / "),
+        gUrl,
+      ]
+        .map(csvEsc)
+        .join(",");
+    }),
+  ];
+  const blob = new Blob(["\uFEFF" + rows.join("\r\n")], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const safeName = (trip.destination || "여행").replace(/[\\/:*?"<>|]/g, "_");
+  a.href = url;
+  a.download = `${safeName}_구글맵_일괄등록.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
+}

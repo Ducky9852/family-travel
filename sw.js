@@ -1,5 +1,5 @@
 // 오프라인 지원 Service Worker (비행기/지하철에서도 일정·체크리스트·사진 열람 가능)
-const CACHE_NAME = "family-travel-pwa-v3";
+const CACHE_NAME = "family-travel-pwa-v4";
 const CORE_ASSETS = [
   "./",
   "./index.html",

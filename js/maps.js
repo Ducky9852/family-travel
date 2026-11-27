@@ -8,12 +8,26 @@ import { getAppConfig } from "./config.js";
 const DAY_COLORS = ["#0f766e", "#0284c7", "#d97706", "#7c3aed", "#db2777", "#059669"];
 const OSM_GEO_CACHE_KEY = "family_travel_osm_geo_v1";
 
+function getGeocodeQuery(raw, fallback) {
+  const q = String(raw || "").trim();
+  if (!q || /^https?:\/\//i.test(q)) return String(fallback || "").trim();
+  return q;
+}
+
 export function getGoogleMapsSearchUrl(query) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query || "")}`;
+  const q = String(query || "").trim();
+  if (/^https?:\/\//i.test(q)) return q;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 }
 
 export function getGoogleMapsDirectionsUrl(query) {
-  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(query || "")}&travelmode=transit`;
+  const q = String(query || "").trim();
+  // 직접 Google Maps 장소 URL이 들어온 경우 장소명 추출
+  if (/^https?:\/\/.*google\.com\/maps\/place\/([^/]+)/i.test(q)) {
+    const placePart = decodeURIComponent(q.match(/\/maps\/place\/([^/]+)/i)[1].replace(/\+/g, " "));
+    return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(placePart)}&travelmode=transit`;
+  }
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}&travelmode=transit`;
 }
 
 // Haversine 거리 계산 (km)
@@ -180,6 +194,7 @@ async function renderLeafletMap(container, opts) {
       title: it.title,
       sub: `${it.day_label} ${it.time_str || ""}`,
       query: it.map_query || it.address || it.title,
+      geoQuery: getGeocodeQuery(it.map_query, it.address || it.title),
       dayIndex: Math.max(0, dayDates.indexOf(it.day_date)),
       raw: it,
     })),
@@ -189,6 +204,7 @@ async function renderLeafletMap(container, opts) {
       title: `★ ${c.name}`,
       sub: `${c.category} · ${c.area || ""}`,
       query: c.map_query || c.address || c.name,
+      geoQuery: getGeocodeQuery(c.map_query, c.address || c.name),
       dayIndex: -1,
       raw: c,
     })),
@@ -216,8 +232,8 @@ async function renderLeafletMap(container, opts) {
 
   const uncached = [];
   for (const t of targets) {
-    if (cache[t.query]) {
-      addPin(t, cache[t.query]);
+    if (cache[t.geoQuery]) {
+      addPin(t, cache[t.geoQuery]);
     } else {
       uncached.push(t);
     }
@@ -236,7 +252,7 @@ async function renderLeafletMap(container, opts) {
   // 백그라운드 순차 지오코딩 (Nominatim 정책 준수: 요청 간 짧은 간격)
   for (const t of uncached.slice(0, 18)) {
     if (activeLeafletMap !== map) break; // 탭 이동 시 중단
-    const coords = await geocodeOsm(t.query);
+    const coords = await geocodeOsm(t.geoQuery);
     if (coords && activeLeafletMap === map) {
       addPin(t, coords);
       geocodedCount++;
@@ -311,6 +327,7 @@ async function renderGoogleMap(container, opts, cfg) {
       title: it.title,
       sub: `${it.day_label} ${it.time_str || ""}`,
       query: it.map_query || it.address || it.title,
+      geoQuery: getGeocodeQuery(it.map_query, it.address || it.title),
       dayIndex: Math.max(0, dayDates.indexOf(it.day_date)),
       raw: it,
     })),
@@ -320,6 +337,7 @@ async function renderGoogleMap(container, opts, cfg) {
       title: `★ ${c.name}`,
       sub: `${c.category} · ${c.area || ""}`,
       query: c.map_query || c.address || c.name,
+      geoQuery: getGeocodeQuery(c.map_query, c.address || c.name),
       dayIndex: -1,
       raw: c,
     })),
@@ -331,7 +349,7 @@ async function renderGoogleMap(container, opts, cfg) {
     if (activeGoogleMap !== map) break;
     try {
       const { places } = await Place.searchByText({
-        textQuery: t.query,
+        textQuery: t.geoQuery,
         fields: ["location", "displayName"],
         maxResultCount: 1,
       });
